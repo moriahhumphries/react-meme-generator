@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Header from "./Components/Header";
 import MemeGenerator from "./Components/MemeGenerator";
+import './style.css';
 
 class App extends Component {
 
@@ -16,8 +17,8 @@ class App extends Component {
 
         return (
             <div>
-                <Header />
-                <h1>Meme Generator</h1>
+                <Header/>
+                <MemeGenerator/>
             </div>
         );
     }
