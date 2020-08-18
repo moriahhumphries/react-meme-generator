@@ -24,15 +24,24 @@ class App extends Component {
                 const {memes} = response.data
                 console.log(memes[0])
                 this.setState({allMemeImgs: memes})
-                })
+            })
         this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+
     }
 
 
     handleChange(event) {
         const {name, value, type} = event.target;
         // Can wrap string in square brackets
-            this.setState({[name]: value});
+        this.setState({[name]: value});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault()
+        const randomNumber = Math.floor(Math.random() * this.state.allMemeImgs.length)
+        const randomMemeImg = this.state.allMemeImgs[randomNumber].url
+        this.setState({randomImage: randomMemeImg})
     }
 
     render() {
@@ -42,7 +51,7 @@ class App extends Component {
             <div>
                 <Header/>
                 <MemeGenerator/>
-                <form className="meme-form">
+                <form className="meme-form" onSubmit={this.handleSubmit}>
                     <input type="text"
                            value={this.state.topText}
                            name="topText"
@@ -59,7 +68,7 @@ class App extends Component {
                 </form>
 
                 <div className="meme">
-                    <img src={this.state.randomImage} alt="" />
+                    <img src={this.state.randomImage} alt=""/>
                     <h2 className="top">{this.state.topText}</h2>
                     <h2 className="bottom">{this.state.bottomText}</h2>
                 </div>
